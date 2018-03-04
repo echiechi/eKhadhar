@@ -1,0 +1,10 @@
+img{
+  width : 800px ;
+  height : 450px;
+  background-size: cover;
+}
+.corssel{
+  width : 1000px ;
+  height : 600px;
+  border: 1px solid #000;
+}

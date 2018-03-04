@@ -1,0 +1,32 @@
+
+<h1>Orders :</h1>
+<div class="row">
+  <div class="col-1"></div>
+  <div class="col-10">
+<ul class="list-group" *ngFor='let ord of (orders$ | async)'>
+<li class="list-group-item">
+    <div>
+      <b>order details:</b>
+    </div>
+    <ul  class="list-group">
+      <li class="list-group-item">name : {{ord.shipping.name}}</li>
+      <li class="list-group-item">first adress : {{ord.shipping.address1}}</li>
+      <li class="list-group-item">second address : {{ord.shipping.address2}} </li>
+      <li class="list-group-item">city : {{ord.shipping.city}}</li>
+      <li class="list-group-item">date : {{ord.datePlaced | date :'dd/MM/yy'}}</li>
+    </ul>
+
+
+<b>products :</b>
+<ul  class="list-group">
+<li class="list-group-item" *ngFor="let item of ord.items">
+    {{item.product.title }} :
+     quantity : <span class="badge badge-success badge-pill">{{item.quantity}}</span> |
+     total price : <span class="badge badge-success badge-pill">{{item.totalPrice | currency : 'USD' : 'symbol'}}</span>
+      </li>
+</ul>
+</li>
+<br>
+</ul>
+</div>
+</div>

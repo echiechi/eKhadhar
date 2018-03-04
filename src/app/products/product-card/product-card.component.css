@@ -1,0 +1,17 @@
+.card-footer{
+  padding :0px;
+}
+.btn-success{
+  background-color: #fff ;
+  color : green ;
+}
+.btn-success:hover{
+  background-color: silver;
+  cursor :pointer;
+}
+img{
+  width : 14.9rem;
+  padding :1px;
+  height : 200px;
+  background-size: cover;
+}

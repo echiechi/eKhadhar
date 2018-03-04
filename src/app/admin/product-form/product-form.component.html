@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-6">
+    <form #f='ngForm' (ngSubmit)="save(f.value)">
+
+      <div class="form-group">
+          <label for="title">Title</label>
+          <input #title='ngModel' [(ngModel)]='product.title' name="title" type="text" class="form-control" id="title" required>
+          <div class="alert alert-danger" *ngIf='title.touched && title.invalid'>title is required</div>
+          </div>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <div class="input-group">
+      <span class="input-group-addon">$</span>
+            <input #price="ngModel" [(ngModel)]='product.price' name="price" type="number" class="form-control" id="price" required [min]='0'>
+
+          </div>
+              <div *ngIf="price.touched && price.invalid">
+                <div class="alert alert-danger" *ngIf="price.errors.required">price is required</div>
+                <div class="alert alert-danger" *ngIf="price.errors.min">price must be more or equal to 0</div>
+                </div>
+          </div>
+      <div class="form-group">
+              <label for="categorie">Category</label>
+              <select #categorie="ngModel"class="form-control" id="categorie"  [(ngModel)]='product.categorie' name="categorie" required>
+                  <option ></option>
+                <option *ngFor='let cat of listCategorie$|async' [value]="cat.$key">{{cat.name}}</option>
+              </select>
+              <div class="alert alert-danger" *ngIf='categorie.touched && categorie.invalid'>select a category</div>
+            </div>
+      <div class="form-group">
+                    <label for="addimg">Add image URL</label>
+                    <input #addimg='ngModel' [(ngModel)]='product.addimg' name="addimg" type="text" class="form-control" id="addimg" required url>
+                    <div *ngIf='addimg.touched && addimg.invalid'>
+                    <div class="alert alert-danger" *ngIf="addimg.errors.required">image is required</div>
+                    <div class="alert alert-danger" *ngIf="addimg.errors.url">must be a url</div>
+                    </div>
+
+                  </div>
+      <button class="btn btn-primary" >Save</button>
+      <button type="reset" class="btn btn-light">Reset</button>
+      <button type="button" class="btn btn-danger" *ngIf='id' (click)='delete()'>Delete</button>
+
+    </form>
+  </div>
+  <div class="col-md-6">
+<product-card [product]="product" [show-action]="false"></product-card>
+  </div>
+</div>
